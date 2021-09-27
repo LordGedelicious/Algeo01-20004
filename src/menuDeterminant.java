@@ -33,7 +33,6 @@ public class menuDeterminant {
             }
         }
         double det = 1.0;
-        m.displayMatriks();
         for(int x = 0; x < m.rows; x++) {
             det *= m.elmt[x][x];
         }
