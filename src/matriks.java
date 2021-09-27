@@ -1,6 +1,7 @@
 package src;
 
 public class matriks {
+    /* --- KONSTRUKTOR --- */
     public int rows;
     public int cols;
     public double [][] elmt;
@@ -9,7 +10,12 @@ public class matriks {
         this.rows = m;
         this.cols = n;
         this.elmt = new double[m][n];
-        for(int i=0; i<this.rows; i++) for(int j=0; j<this.cols; j++) elmt[i][j] = 0;
+        for(int i = 0; i < this.rows; i++) for(int j = 0; j < this.cols; j++) elmt[i][j] = 0;
+    }
+
+    /* --- SELEKTOR --- */
+    public boolean isIdxValid(int i, int j){
+        return ((0 <= i) && (i <= getLastIdxRow()) && (0 <= j) && (j <= getLastIdxCol()));
     }
 
     public int getLastIdxRow(){
@@ -20,9 +26,10 @@ public class matriks {
         return this.cols - 1;
     }
 
+    /* --- INPUT/OUTPUT --- */
     public void displayMatriks(){
-        for(int i=0; i<this.rows; i++){
-            for(int j=0; j<this.cols; j++){
+        for(int i = 0; i < this.rows; i++){
+            for(int j = 0; j < this.cols; j++){
                 System.out.print(this.elmt[i][j]);
                 System.out.print(" ");
             }
@@ -30,16 +37,19 @@ public class matriks {
         }
     }
 
-    public void transpose(){
-        matriks mm = new matriks(this.cols, this.rows);
+//    public void readMatriks(){
+//
+//    }
+
+    /* --- OPERASI MATRIKS --- */
+    public static matriks transpose(matriks m){
+        matriks mm = new matriks(m.cols, m.rows);
         for(int i = 0; i < mm.rows; i++){
             for(int j = 0; j < mm.cols; j++){
-                mm.elmt[i][j] = this.elmt[j][i];
+                mm.elmt[i][j] = m.elmt[j][i];
             }
         }
-        this.rows = mm.rows;
-        this.cols = mm.cols;
-        this.elmt = mm.elmt;
+        return mm;
     }
 
     public static matriks multiplyMatriks(matriks m1, matriks m2){
@@ -77,11 +87,47 @@ public class matriks {
     public static matriks multiplyConst(matriks m, int x){
         matriks mm = new matriks(m.cols, m.rows);
         for(int i=0; i<m.rows; i++){
-            for(int j=0; j<m.cols; j++){
-                mm.elmt[i][j] *= x;
-            }
+            for(int j=0; j<m.cols; j++) mm.elmt[i][j] *= x;
         }
         return mm;
+    }
+
+    public static int countElement(matriks m){
+        return (m.rows * m.cols);
+    }
+
+    /* --- OPERASI BARIS ELEMENTER --- */
+    public void rowSwap(int i, int j){
+        if(isIdxValid(i, j)){
+            for(int k=0; k < this.cols; k++){
+                double tmp = this.elmt[i][k];
+                this.elmt[j][k] = this.elmt[i][k];
+                this.elmt[i][k] = tmp;
+            }
+        }
+    }
+
+    public void rowMultiply(int i, double x){
+        if((0 <= i) && (i <= this.rows)){
+            for(int k=0; k < this.cols; k++) this.elmt[i][k] *= x;
+        }
+    }
+
+    public  void rowPlus(int i, int j){
+        if(isIdxValid(i, j)){
+            for(int k=0; k < this.cols; k++) this.elmt[i][k] += this.elmt[j][k];
+        }
+    }
+
+    public void rowMinus(int i, int j){
+        if(isIdxValid(i, j)){
+            for(int k=0; k < this.cols; k++) this.elmt[i][k] -= this.elmt[j][k];
+        }
+    }
+
+    /*--- PREDIKAT --- */
+    public static boolean isSquare(matriks m){
+        return (m.rows == m.cols);
     }
 
     public static boolean isEqual(matriks m1, matriks m2){
@@ -95,12 +141,15 @@ public class matriks {
         return true;
     }
 
-    public static boolean isSquare(matriks m){
-        return m.rows == m.cols;
-    }
-
-    public static int countElement(matriks m){
-        return m.rows * m.cols;
+    public static boolean isIdentity(matriks m){
+        if(!isSquare(m)) return false;
+        for(int i=0;i<m.rows;i++){
+            for(int j=0;j<m.cols;j++){
+                if((i == j) && (m.elmt[i][j] != 1)) return false;
+                if((i != j) && (m.elmt[i][j] != 0)) return false;
+            }
+        }
+        return true;
     }
 
 }

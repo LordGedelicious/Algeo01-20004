@@ -35,5 +35,4 @@ public class menuSPL {
         }
         return 1;
     }
-    // referensi gw dari sini https://www.geeksforgeeks.org/gaussian-elimination/
 }
