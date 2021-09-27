@@ -96,6 +96,24 @@ public class matriks {
         return (m.rows * m.cols);
     }
 
+    public static matriks minor(matriks m, int row, int col){
+        matriks mnr = new matriks(m.rows - 1, m.cols - 1);
+        int curRow = 0, curCol = 0;
+        for(int i = 0; i < m.rows; i++){
+            for(int j = 0; j < m.cols; j++){
+                if(i != row && j != col){
+                    mnr.elmt[curRow][curCol] = m.elmt[i][j];
+                    curCol++;
+                    if(curCol == m.cols - 1){
+                        curCol = 0;
+                        curRow++;
+                    }
+                }
+            }
+        }
+        return mnr;
+    }
+
     /* --- OPERASI BARIS ELEMENTER --- */
     public void rowSwap(int i, int j){
         if(isIdxValid(i, j)){
