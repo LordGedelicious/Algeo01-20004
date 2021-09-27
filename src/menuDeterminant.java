@@ -22,4 +22,21 @@ public class menuDeterminant {
         }
         return det;
     }
+    public static double determinantReduksiBaris(matriks m) {
+        for(int j = 0; j < m.cols-1; j++) {    
+            for(int i = 1+j; i < m.rows; i++) {
+                if (m.elmt[i][j] != 0) {
+                    for (int k = 0; k < m.cols; k++) {
+                        m.elmt[i][k] = m.elmt[i][k] - ((m.elmt[i][j])/(m.elmt[j][j]))*m.elmt[j][k];
+                    }
+                }
+            }
+        }
+        double det = 1.0;
+        m.displayMatriks();
+        for(int x = 0; x < m.rows; x++) {
+            det *= m.elmt[x][x];
+        }
+        return det;
+    }
 }
