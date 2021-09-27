@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class MainMenu {
+public class mainMenu {
     public static void main(String[] args) {
         Menu();
     }
@@ -28,16 +28,6 @@ public class MainMenu {
                 default:
                     break;
             }
-        }
-    }
-    static void Determinan() {
-        try (Scanner det_input = new Scanner(System.in)) {
-            System.out.println("Pilih Metode Untuk Menyelesaikan SPL : ");
-            System.out.println("1. Metode Eliminasi Gauss");
-            System.out.println("2. Metode Eliminasi Gauss-Jordan");
-            System.out.println("3. Metode Matriks Balikan");
-            System.out.println("4. Kaidah Cramer");
-            System.out.println("5. Kembali ke Menu Utama");
         }
     }
     static void Menu() {

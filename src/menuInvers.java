@@ -2,7 +2,7 @@ package src;
 
 import src.menuDeterminant;
 
-public class inverseMatrix {
+public class menuInvers {
     public static void returnCofactor(double Matrix[][], double temp[][], int row, int col, int dimension) {
         int i = 0, j = 0;
         for (int matrix_row = 0; matrix_row < dimension; matrix_row++) {
@@ -33,7 +33,7 @@ public class inverseMatrix {
             }
         }
     }
-    public static boolean getInverse(double Matrix[][], double Inverted[][], int dimension) {
+    public static boolean getInverseAdjoint(double Matrix[][], double Inverted[][], int dimension) {
         int det = menuDeterminant.determinantKofaktor(Matrix);
         if (det == 0) {
             System.out.println("Matriks singular tidak memiliki invers karena berdeterminan 0!");
