@@ -29,6 +29,19 @@ public class matriks {
             System.out.println("\n");
         }
     }
+
+    public void transpose(){
+        matriks mm = new matriks(this.cols, this.rows);
+        for(int i = 0; i < mm.rows; i++){
+            for(int j = 0; j < mm.cols; j++){
+                mm.elmt[i][j] = this.elmt[j][i];
+            }
+        }
+        this.rows = mm.rows;
+        this.cols = mm.cols;
+        this.elmt = mm.elmt;
+    }
+
     public static matriks multiplyMatriks(matriks m1, matriks m2){
         matriks m = new matriks(m1.rows, m2.cols);
         for(int i=0; i<m.rows; i++){
@@ -89,4 +102,5 @@ public class matriks {
     public static int countElement(matriks m){
         return m.rows * m.cols;
     }
+
 }
