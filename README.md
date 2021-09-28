@@ -1,5 +1,8 @@
-# -CoKi-ChuAkS-
-Tugas Besar Aljabar Linear dan Geometri Kelompok 53 : -CoKi*|ChuAkS-
-Attempt | #1 | #2 | #3 | #4 | #5 | #6 | #7 | #8 | #9 | #10 | #11
---- | --- | --- | --- |--- |--- |--- |--- |--- |--- |--- |---
-Seconds | 301 | 283 | 290 | 286 | 289 | 285 | 287 | 287 | 272 | 276 | 269
+# TUBES 1 ALJABAR LINEAR DAN GEOMETRI
+
+### -CoKi*|ChuAkS- Group
+Nama | NIM | Kelas
+--- | --- | --- 
+Gede Prasidha B. | 004 | SDE 
+I Gede Arya R. P. | 036 | 283 
+Arik Rayi A. | 048 | 283 
