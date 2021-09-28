@@ -42,4 +42,27 @@ public class menuSPL {
         // System.out.println("\nX" + ans.length + " adalah " + ans[m.cols-2]);
         // buat ngedisplay tiap x nya belom beres baru bikin matriks echelon doang
     }
+    public static void SPLCramer(matriks m) {
+        int size = m.rows;
+        double answer[] = new double[size];
+        double new_matrix[][] = new double[size][size];
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                new_matrix[i][j] = m.elmt[i][j];
+            }
+        }
+        double new_det = menuDeterminant.determinantKofaktor(new_matrix);
+        double temp_det;
+        for (int k = 0; k < size; k++) {
+            for (int l = 0; l < size; l++) {
+                new_matrix[l][k] = m.elmt[l][size - 1];
+            }
+            temp_det = menuDeterminant.determinantKofaktor(new_matrix);
+            answer[k] = temp_det / new_det;
+        }
+        // tinggal ngeprint hasilnya aja, kurang lebih kyk gini
+        for (int a = 0; m < size; m++) {
+            System.out.println("X" + a + " adalah " + answer[a]);
+        }
+    }
 }
