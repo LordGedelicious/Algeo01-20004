@@ -27,6 +27,34 @@ public class menuSPL {
                 }
             }
         }
+        m.displayMatriks();
+        double answer[] = new double[m.cols - 1];
+        if (m.elmt[m.rows - 1][m.cols - 2] == 0) {
+            if (m.elmt[m.rows - 1][m.cols - 2] == 0) {
+                System.out.println("SPL memiliki solusi tak berhingga");
+            } else {
+                System.out.println("SPL tidak memiliki solusi yang memenuhi");
+            }
+        } else {
+            for (int i = m.rows - 1; i >= 0; i--) {
+                int where = 0;
+                for (int j = 0; j < (m.cols - 1); j++) {
+                    if (m.elmt[i][j] == 1) {
+                        where = i;
+                        break;
+                    }
+                }
+                answer[i] = m.elmt[i][m.cols - 1]; 
+                for (int k = where + 1; k < m.cols - 1; k++) {
+                    answer[i] -= answer[k] * m.elmt[i][k];
+                }
+            }
+            System.out.println("Solusi dari SPL di atas");
+            for (int i = 0; i < answer.length; i++) {
+                System.out.println("Variabel ke-" + (i + 1) + " bernilai " + answer[i]);
+        }
+        }
+        
         // double[] ans = new double[m.cols-1];
         // if ((m.rows >= m.cols) && (m.elmt[m.cols-2][m.cols-3] == 0) && (m.elmt[m.cols-2][m.cols-2] != 0)) {
         //     ans[m.cols-2] = m.elmt[m.cols-2][m.cols-1]/m.elmt[m.cols-2][m.cols-2];
