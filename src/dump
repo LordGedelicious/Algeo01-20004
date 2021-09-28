@@ -1,0 +1,4 @@
+        // tinggal ngeprint hasilnya aja, kurang lebih kyk gini
+        for (int a = 0; m < size; m++) {
+            System.out.println("X" + a + " adalah " + answer[a]);
+        }

@@ -27,14 +27,6 @@ public class menuSPL {
                 }
             }
         }
-        double[] answer = new double[m.cols-1];
-        for (int i = m.cols - 1; i >= 0; i--) {
-            answer[i] = m.elmt[i][m.rows - 1];
-            for (int j = i + 1; j < m.cols - 1; j++) {
-                answer[i] = answer[i] - m.elmt[i][j] * answer[j];
-            }
-        }
-        System.out.println("X" + ans.length + " adalah " + ans[m.cols-2]);
         // double[] ans = new double[m.cols-1];
         // if ((m.rows >= m.cols) && (m.elmt[m.cols-2][m.cols-3] == 0) && (m.elmt[m.cols-2][m.cols-2] != 0)) {
         //     ans[m.cols-2] = m.elmt[m.cols-2][m.cols-1]/m.elmt[m.cols-2][m.cols-2];
@@ -45,24 +37,29 @@ public class menuSPL {
     public static void SPLCramer(matriks m) {
         int size = m.rows;
         double answer[] = new double[size];
-        double new_matrix[][] = new double[size][size];
+        matriks isolated = new matriks(size, size);
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                new_matrix[i][j] = m.elmt[i][j];
+                isolated.elmt[i][j] = m.elmt[i][j];
             }
         }
-        double new_det = menuDeterminant.determinantKofaktor(new_matrix);
+        double new_det = menuDeterminant.determinantKofaktor(isolated);
         double temp_det;
         for (int k = 0; k < size; k++) {
             for (int l = 0; l < size; l++) {
-                new_matrix[l][k] = m.elmt[l][size - 1];
+                isolated.elmt[l][k] = m.elmt[l][size];
             }
-            temp_det = menuDeterminant.determinantKofaktor(new_matrix);
+            temp_det = menuDeterminant.determinantKofaktor(isolated);
             answer[k] = temp_det / new_det;
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    isolated.elmt[i][j] = m.elmt[i][j];
+                }
+            }
         }
-        // tinggal ngeprint hasilnya aja, kurang lebih kyk gini
-        for (int a = 0; m < size; m++) {
-            System.out.println("X" + a + " adalah " + answer[a]);
+        System.out.println("Solusi dari SPL di atas adalah :");
+        for (int i = 0; i < size; i++) {
+            System.out.println("Nilai Veriabel ke-" + (i + 1) + " adalah " + answer[i]);
         }
     }
 }
