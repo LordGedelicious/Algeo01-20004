@@ -77,7 +77,7 @@ public class menuSPL {
 
     public static void SPLCramer(matriks m) {
         int size = m.rows;
-        double answer[] = new double[size];
+        double[] answer = new double[size];
         matriks isolated = new matriks(size, size);
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -93,9 +93,7 @@ public class menuSPL {
             temp_det = menuDeterminant.determinantKofaktor(isolated);
             answer[k] = temp_det / new_det;
             for (int i = 0; i < size; i++) {
-                for (int j = 0; j < size; j++) {
-                    isolated.elmt[i][j] = m.elmt[i][j];
-                }
+                System.arraycopy(m.elmt[i], 0, isolated.elmt[i], 0, size);
             }
         }
         System.out.println("Solusi dari SPL di atas adalah :");
