@@ -43,9 +43,6 @@ public class menuSPL {
                     double withno = m.elmt[j][j+yankee];
                     for (int x=0; x<m.cols; x++) {
                         m.elmt[j][x] /= withno;
-                        System.out.println("\nYankee: " + yankee + ", Withno: " + withno + ", Element ke-" + j + "," + x + "\n");
-                        m.displayMatriks();
-                        System.out.println(" ");
                     }
                     break;
                 }
@@ -58,15 +55,10 @@ public class menuSPL {
                     double brim = m.elmt[i][j+yankee];
                     for (int k = 0; k < m.cols; k++) {
                         m.elmt[i][k] = m.elmt[i][k] - brim/(m.elmt[j][j+yankee])*m.elmt[j][k];
-                        System.out.println("\nYankee: " + yankee + ", Brim: " + brim + ", Element ke-" + i + "," + k + "\n");
-                        m.displayMatriks();
-                        System.out.println(" ");
-
                     }
                 }
             }
         }
-        m.displayMatriks();
         if (m.elmt[m.cols-2][m.cols-2] == 0) {
             if (m.elmt[m.cols-2][m.cols-1] == 0) {
                 // belom jadi
