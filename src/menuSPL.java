@@ -42,6 +42,55 @@ public class menuSPL {
         // System.out.println("\nX" + ans.length + " adalah " + ans[m.cols-2]);
         // buat ngedisplay tiap x nya belom beres baru bikin matriks echelon doang
     }
+
+    public static void SPLGaussJordan(matriks m) {
+        for(int j = 0; j < m.cols-1; j++) {
+            int yankee = 0;   
+            while (m.isIdxValid(j, j+yankee) && m.elmt[j][j+yankee] != 1) {
+                if (m.elmt[j][j+yankee] != 1 && m.elmt[j][j+yankee] != 0) {
+                    double withno = m.elmt[j][j+yankee];
+                    for (int x=0; x<m.cols; x++) {
+                        m.elmt[j][x] /= withno;
+                        System.out.println("\nYankee: " + yankee + ", Withno: " + withno + ", Element ke-" + j + "," + x + "\n");
+                        m.displayMatriks();
+                        System.out.println(" ");
+                    }
+                    break;
+                }
+                else if (m.elmt[j][j] == 0) {
+                    yankee ++;
+                }
+            }
+            for(int i = 0; i < m.rows; i++) {
+                if ((i != j) && (m.elmt[i][j+yankee] != 0.0)) {
+                    double brim = m.elmt[i][j+yankee];
+                    for (int k = 0; k < m.cols; k++) {
+                        m.elmt[i][k] = m.elmt[i][k] - brim/(m.elmt[j][j+yankee])*m.elmt[j][k];
+                        System.out.println("\nYankee: " + yankee + ", Brim: " + brim + ", Element ke-" + i + "," + k + "\n");
+                        m.displayMatriks();
+                        System.out.println(" ");
+
+                    }
+                }
+            }
+        }
+        m.displayMatriks();
+        if (m.elmt[m.cols-2][m.cols-2] == 0) {
+            if (m.elmt[m.cols-2][m.cols-1] == 0) {
+                // belom jadi
+            }
+            else {
+                System.out.println("Solusi tidak ada.");
+            }
+        }
+        else {
+            for(int i = 0; i<m.cols-1; i++) {
+                int count = i+1;
+                System.out.println("X" + count + " = " + m.elmt[i][m.cols-1]/m.elmt[i][i]);
+            }
+        }
+    }
+
     public static void SPLCramer(matriks m) {
         int size = m.rows;
         double answer[] = new double[size];
