@@ -30,7 +30,8 @@ public class matriks {
     public void displayMatriks(){
         for(int i = 0; i < this.rows; i++){
             for(int j = 0; j < this.cols; j++){
-                System.out.print(this.elmt[i][j]);
+                this.elmt[i][j] += 0;
+                System.out.printf("%.6f ", this.elmt[i][j]);
                 System.out.print(" ");
             }
             System.out.println("\n");
@@ -84,10 +85,20 @@ public class matriks {
         return m;
     }
 
-    public static matriks multiplyConst(matriks m, int x){
-        matriks mm = new matriks(m.cols, m.rows);
+    public static matriks multiplyConst(matriks m, double x){
+        matriks mm = m;
         for(int i=0; i<m.rows; i++){
-            for(int j=0; j<m.cols; j++) mm.elmt[i][j] *= x;
+            for(int j=0; j<m.cols; j++){
+                mm.elmt[i][j] *= x;
+            }
+        }
+        return mm;
+    }
+
+    public static matriks divideConst(matriks m, double x){
+        matriks mm = m;
+        for(int i=0; i<m.rows; i++){
+            for(int j=0; j<m.cols; j++) mm.elmt[i][j] /= x;
         }
         return mm;
     }

@@ -17,4 +17,9 @@ public class menuInvers {
         }
         return adj;
     }
+
+    public static matriks inverse(matriks mat){
+        return matriks.divideConst(adjoint(mat), menuDeterminant.determinantKofaktor(mat));
+    }
+
 }
