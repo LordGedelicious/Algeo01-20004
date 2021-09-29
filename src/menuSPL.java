@@ -6,7 +6,7 @@ import static src.menuDeterminant.*;
 import static src.menuInvers.*;
 
 public class menuSPL {
-    public static void SPLGauss(matriks m) {
+    public static double[] SPLGauss(matriks m) {
         for(int j = 0; j < m.cols-1; j++) {
             int yankee = 0;   
             while (m.isIdxValid(j, j+yankee) && m.elmt[j][j+yankee] != 1) {
@@ -35,8 +35,12 @@ public class menuSPL {
         if (m.elmt[m.rows - 1][m.cols - 2] == 0) {
             if (m.elmt[m.rows - 1][m.cols - 2] == 0) {
                 System.out.println("SPL memiliki solusi tak berhingga");
+                answer[0] = 999.999;
+                return answer;
             } else {
                 System.out.println("SPL tidak memiliki solusi yang memenuhi");
+                answer[0] = -999.999;
+                return answer;
             }
         } else {
             for (int i = m.rows - 1; i >= 0; i--) {
@@ -52,11 +56,9 @@ public class menuSPL {
                     answer[i] -= answer[k] * m.elmt[i][k];
                 }
             }
-            System.out.println("Solusi dari SPL di atas");
-            for (int i = 0; i < answer.length; i++) {
-                System.out.println("Variabel ke-" + (i + 1) + " bernilai " + answer[i]);
+            return answer;
         }
-        }
+}
         
         // double[] ans = new double[m.cols-1];
         // if ((m.rows >= m.cols) && (m.elmt[m.cols-2][m.cols-3] == 0) && (m.elmt[m.cols-2][m.cols-2] != 0)) {
@@ -64,7 +66,6 @@ public class menuSPL {
         // }
         // System.out.println("\nX" + ans.length + " adalah " + ans[m.cols-2]);
         // buat ngedisplay tiap x nya belom beres baru bikin matriks echelon doang
-    }
 
     public static void SPLGaussJordan(matriks m) {
         for(int j = 0; j < m.cols-1; j++) {
