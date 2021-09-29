@@ -2,6 +2,9 @@ package src;
 
 import java.lang.reflect.Array;
 
+import static src.menuDeterminant.*;
+import static src.menuInvers.*;
+
 public class menuSPL {
     public static void SPLGauss(matriks m) {
         for(int j = 0; j < m.cols-1; j++) {
@@ -127,6 +130,28 @@ public class menuSPL {
         System.out.println("Solusi dari SPL di atas adalah :");
         for (int i = 0; i < size; i++) {
             System.out.println("Nilai Veriabel ke-" + (i + 1) + " adalah " + answer[i]);
+        }
+    }
+
+    public static void SPLInverse(matriks m){
+        if(m.cols == m.rows + 1){
+            matriks lf = new matriks(m.rows, m.rows);
+            matriks ri = new matriks(m.rows, 1);
+            matriks ans = new matriks(m.rows, m.rows);
+            for(int i = 0; i < m.rows; i++){
+                for(int j = 0; j < m.rows; j++){
+                    lf.elmt[i][j] = m.elmt[i][j];
+                }
+            }
+            for(int i = 0; i < m.rows; i++){
+                    ri.elmt[i][0] = m.elmt[i][m.rows];
+            }
+            lf = menuInvers.inverse(lf);
+            ans = matriks.multiplyMatriks(lf, ri);
+            System.out.println("Solusi dari SPL di atas adalah :");
+            for (int i = 0; i < m.rows; i++) {
+                System.out.println("Nilai Veriabel ke-" + (i + 1) + " adalah " + m.elmt[i][1]);
+            }
         }
     }
 }
