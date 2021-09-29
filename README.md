@@ -3,6 +3,6 @@
 ### -CoKi*|ChuAkS- Group
 Nama | NIM | Kelas
 --- | --- | --- 
-Gede Prasidha B. | 004 | SDE 
-I Gede Arya R. P. | 036 | 283 
-Arik Rayi A. | 048 | 283 
+Gede Prasidha B. | 004 | K01 
+I Gede Arya R. P. | 036 | K01 
+Arik Rayi A. | 048 | K01 
