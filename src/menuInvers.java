@@ -7,7 +7,7 @@ public class menuInvers {
             adj.elmt[0][0] = 1;
             return adj;
         }
-        int sign = 1;
+        int sign;
         for(int i = 0; i < mat.rows; i++){
             for(int j = 0; j < mat.cols; j++){
                 matriks tmp = matriks.minor(mat, i, j);
