@@ -50,12 +50,12 @@ public class mainMenu {
             int det_int = det_input.nextInt();
             switch (det_int) {
                 case 1:
-                    matriks solve_kofaktor = readOrType();
+                    matriks solve_kofaktor = readOrTypeDet();
                     double det_kofaktor = menuDeterminant.determinantKofaktor(solve_kofaktor);
                     System.out.println("Determinan matriksnya adalah " + det_kofaktor);
                     break;
                 case 2:
-                    matriks solve_reduksi = readOrType();
+                    matriks solve_reduksi = readOrTypeDet();
                     double det_reduksi = menuDeterminant.determinantReduksiBaris(solve_reduksi);
                     System.out.println("Determinan matriksnya adalah " + det_reduksi);
                     break;
@@ -94,6 +94,27 @@ public class mainMenu {
             }
         }
     }
+    public static matriks readOrTypeDet() {
+        try (Scanner choice_input = new Scanner(System.in)) {
+            System.out.println("Pilih cara untuk mengisi matriks untuk diproses");
+            System.out.println("1. Input keyboard");
+            System.out.println("2. Baca dari file");
+            int choice = choice_input.nextInt();
+            switch (choice) {
+                case 1:
+                    matriks input_matriks = initiateMatriksDet();
+                    return input_matriks;
+                case 2:
+                    // ini kalo read dari file
+                    matriks input_matriks_1 = initiateMatriksDet();
+                    return input_matriks_1; // ini biar kodenya jalan aja, nanti diganti
+                default:
+                    // ini kalo selain dari 1 atau 2 inputnya
+                    System.out.println("Input tidak dikenali, silahkan coba ulang");
+                    return readOrType();
+            }
+        }
+    }
     public static matriks initiateMatriks() {
         try (Scanner matriks_input = new Scanner(System.in)) {
             System.out.println("Silahkan input jumlah baris dalam matriksnya: ");
@@ -105,6 +126,21 @@ public class mainMenu {
             System.out.println("Silahkan input elemen dalam matriksnya: ");
             for (int i = 0; i < row_matriks; i++) {
                 for (int j = 0; j < col_matriks; j++) {
+                    spl.elmt[i][j] = matriks_input.nextDouble();
+                }
+            }
+            return spl;
+        }
+    }
+    public static matriks initiateMatriksDet() {
+        try (Scanner matriks_input = new Scanner(System.in)) {
+            System.out.println("Silahkan input jumlah baris dan col dalam matriksnya: ");
+            // ukuran matriks adalah row_matriks x col_matriks
+            int row_col_matriks = matriks_input.nextInt();
+            matriks spl = new matriks(row_col_matriks, row_col_matriks);
+            System.out.println("Silahkan input elemen dalam matriksnya: ");
+            for (int i = 0; i < row_col_matriks; i++) {
+                for (int j = 0; j < row_col_matriks; j++) {
                     spl.elmt[i][j] = matriks_input.nextDouble();
                 }
             }
