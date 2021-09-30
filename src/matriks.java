@@ -86,21 +86,19 @@ public class matriks {
     }
 
     public static matriks multiplyConst(matriks m, double x){
-        matriks mm = m;
         for(int i=0; i<m.rows; i++){
             for(int j=0; j<m.cols; j++){
-                mm.elmt[i][j] *= x;
+                m.elmt[i][j] *= x;
             }
         }
-        return mm;
+        return m;
     }
 
     public static matriks divideConst(matriks m, double x){
-        matriks mm = m;
         for(int i=0; i<m.rows; i++){
-            for(int j=0; j<m.cols; j++) mm.elmt[i][j] /= x;
+            for(int j=0; j<m.cols; j++) m.elmt[i][j] /= x;
         }
-        return mm;
+        return m;
     }
 
     public static int countElement(matriks m){
