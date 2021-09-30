@@ -26,8 +26,9 @@ public class menuDeterminant {
         for(int j = 0; j < m.cols-1; j++) {    
             for(int i = 1+j; i < m.rows; i++) {
                 if (m.elmt[i][j] != 0) {
+                    double bruh = m.elmt[i][j];
                     for (int k = 0; k < m.cols; k++) {
-                        m.elmt[i][k] = m.elmt[i][k] - ((m.elmt[i][j])/(m.elmt[j][j]))*m.elmt[j][k];
+                        m.elmt[i][k] = m.elmt[i][k] - (bruh/(m.elmt[j][j]))*m.elmt[j][k];
                     }
                 }
             }

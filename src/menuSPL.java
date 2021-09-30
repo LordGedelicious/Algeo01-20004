@@ -6,7 +6,7 @@ import static src.menuDeterminant.*;
 import static src.menuInvers.*;
 
 public class menuSPL {
-    public static double[] SPLGauss(matriks m) {
+    public static void SPLGauss(matriks m) {
         for(int j = 0; j < m.cols-1; j++) {
             int yankee = 0;   
             while (m.isIdxValid(j, j+yankee) && m.elmt[j][j+yankee] != 1) {
@@ -30,34 +30,30 @@ public class menuSPL {
                 }
             }
         }
-        m.displayMatriks();
-        double answer[] = new double[m.cols - 1];
-        if (m.elmt[m.rows - 1][m.cols - 2] == 0) {
-            if (m.elmt[m.rows - 1][m.cols - 2] == 0) {
-                System.out.println("SPL memiliki solusi tak berhingga");
-                answer[0] = 999.999;
-                return answer;
-            } else {
-                System.out.println("SPL tidak memiliki solusi yang memenuhi");
-                answer[0] = -999.999;
-                return answer;
-            }
-        } else {
-            for (int i = m.rows - 1; i >= 0; i--) {
-                int where = 0;
-                for (int j = 0; j < (m.cols - 1); j++) {
-                    if (m.elmt[i][j] == 1) {
-                        where = i;
-                        break;
-                    }
-                }
-                answer[i] = m.elmt[i][m.cols - 1]; 
-                for (int k = where + 1; k < m.cols - 1; k++) {
-                    answer[i] -= answer[k] * m.elmt[i][k];
-                }
-            }
-            return answer;
-        }
+        // double answer[] = new double[m.cols - 1];
+        // if (m.elmt[m.rows - 1][m.cols - 2] == 0) {
+        //     if (m.elmt[m.rows - 1][m.cols - 2] == 0) {
+        //         System.out.println("SPL memiliki solusi tak berhingga");
+        //         answer[0] = 999.999;
+        //     } else {
+        //         System.out.println("SPL tidak memiliki solusi yang memenuhi");
+        //         answer[0] = -999.999;
+        //     }
+        // } else {
+        //     for (int i = m.rows - 1; i >= 0; i--) {
+        //         int where = 0;
+        //         for (int j = 0; j < (m.cols - 1); j++) {
+        //             if (m.elmt[i][j] == 1) {
+        //                 where = i;
+        //                 break;
+        //             }
+        //         }
+        //         answer[i] = m.elmt[i][m.cols - 1]; 
+        //         for (int k = where + 1; k < m.cols - 1; k++) {
+        //             answer[i] -= answer[k] * m.elmt[i][k];
+        //         }
+        //     }
+        // }
 }
         
         // double[] ans = new double[m.cols-1];
