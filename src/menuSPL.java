@@ -248,21 +248,24 @@ public class menuSPL {
         if(m.cols == m.rows + 1){
             matriks lf = new matriks(m.rows, m.rows);
             matriks ri = new matriks(m.rows, 1);
-            matriks ans = new matriks(m.rows, m.rows);
-            for(int i = 0; i < m.rows; i++){
-                for(int j = 0; j < m.rows; j++){
-                    lf.elmt[i][j] = m.elmt[i][j];
+            if (determinantKofaktor(lf) != 0){
+                matriks ans = new matriks(m.rows, m.rows);
+                for(int i = 0; i < m.rows; i++){
+                    for(int j = 0; j < m.rows; j++){
+                        lf.elmt[i][j] = m.elmt[i][j];
+                    }
+                }
+                for(int i = 0; i < m.rows; i++){
+                    ri.elmt[i][0] = m.elmt[i][m.rows];
+                }
+                lf = menuInvers.inverse(lf);
+                ans = matriks.multiplyMatriks(lf, ri);
+                System.out.println("Solusi dari SPL di atas adalah :");
+                for (int i = 0; i < m.rows; i++) {
+                    System.out.printf("X%d adalah %.2f\n", i+1, ans.elmt[i][0]);
                 }
             }
-            for(int i = 0; i < m.rows; i++){
-                    ri.elmt[i][0] = m.elmt[i][m.rows];
-            }
-            lf = menuInvers.inverse(lf);
-            ans = matriks.multiplyMatriks(lf, ri);
-            System.out.println("Solusi dari SPL di atas adalah :");
-            for (int i = 0; i < m.rows; i++) {
-                System.out.printf("X%d adalah %.2f\n", i+1, ans.elmt[i][0]);
-            }
+            else System.out.println("SPL tidak memiliki solusi.");
         }
         else{
             System.out.println("Metode SPL dengan matriks Inverse hanya bisa menjalankan SPL dengan ukuran matriks augmented n x (n+1). Silahkan gunakan metode Gauss atau Gauss Jordan untuk menyelesaikan permasalahan anda.");
