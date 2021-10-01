@@ -4,7 +4,7 @@ public class menuDeterminant {
     public static double determinantKofaktor(matriks m){
         if(m.rows == 1) return m.elmt[0][0];
         int sign = 1;
-        float det = 0;
+        double det = 0;
         matriks mKof = new matriks(m.rows-1, m.cols-1);
         for(int i = 0; i < mKof.rows; i++){
             for(int j = 0; j < mKof.cols; j++){
