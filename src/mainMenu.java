@@ -219,7 +219,13 @@ public class mainMenu {
                                 menuInterpolasi.createMatriksInterpolasiKeyboard();
                                 break;
                             case 2:
-                                // untuk isi file
+                                Scanner fileInput = new Scanner(System.in);
+                                System.out.print("Masukkan nama file: ");
+                                String fileName = fileInput.next();
+                                try {
+                                    matriks input_matriks_1 = readFileMatriks(fileName);
+                                    return input_matriks_1;
+                                } catch (FileNotFoundException f){}
                                 break;
                             default:
                                 // untuk input di luar 1 atau 2
@@ -239,7 +245,13 @@ public class mainMenu {
                                 menuRegresi.createSPLKeyboard();
                                 break;
                             case 2:
-                                // untuk isi file
+                                Scanner fileInput = new Scanner(System.in);
+                                System.out.print("Masukkan nama file: ");
+                                String fileName = fileInput.next();
+                                try {
+                                    matriks input_matriks_1 = readFileMatriks(fileName);
+                                    return input_matriks_1;
+                                } catch (FileNotFoundException f){}
                                 break;
                             default:
                                 // untuk input di luar 1 atau 2

@@ -257,16 +257,16 @@ public class menuSPL {
         if(m.cols == m.rows + 1){
             matriks lf = new matriks(m.rows, m.rows);
             matriks ri = new matriks(m.rows, 1);
-            if (determinantKofaktor(lf) != 0){
-                matriks ans = new matriks(m.rows, m.rows);
-                for(int i = 0; i < m.rows; i++){
-                    for(int j = 0; j < m.rows; j++){
-                        lf.elmt[i][j] = m.elmt[i][j];
-                    }
+            matriks ans = new matriks(m.rows, m.rows);
+            for(int i = 0; i < m.rows; i++){
+                for(int j = 0; j < m.rows; j++){
+                    lf.elmt[i][j] = m.elmt[i][j];
                 }
-                for(int i = 0; i < m.rows; i++){
-                    ri.elmt[i][0] = m.elmt[i][m.rows];
-                }
+            }
+            for(int i = 0; i < m.rows; i++){
+                ri.elmt[i][0] = m.elmt[i][m.rows];
+            }
+            if (menuDeterminant.determinantReduksiBaris(lf) != 0){
                 lf = menuInvers.inverse(lf);
                 ans = matriks.multiplyMatriks(lf, ri);
                 System.out.println("Solusi dari SPL di atas adalah :");
