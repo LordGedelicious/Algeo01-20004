@@ -23,20 +23,22 @@ public class menuDeterminant {
         return det;
     }
     public static double determinantReduksiBaris(matriks m) {
-        for(int j = 0; j < m.cols-1; j++) {    
-            for(int i = 1+j; i < m.rows; i++) {
+        // matriks sembarang persegi
+        for(int j = 0; j < m.cols-1; j++) {     // Pengulangan serong   
+            for(int i = 1+j; i < m.rows; i++) { // Pengulangan untuk membuat elemen dibawah tiap serong bernilai 0
                 if (m.elmt[i][j] != 0) {
-                    double bruh = m.elmt[i][j];
-                    for (int k = 0; k < m.cols; k++) {
+                    double bruh = m.elmt[i][j]; // Variabel bruh merupakan pembagi
+                    for (int k = 0; k < m.cols; k++) {  // Membagi tiap elemen di baris i
                         m.elmt[i][k] = m.elmt[i][k] - (bruh/(m.elmt[j][j]))*m.elmt[j][k];
                     }
                 }
             }
         }
-        double det = 1.0;
-        for(int x = 0; x < m.rows; x++) {
+        // matriks sudah segitiga bawah
+        double det = 1.0;   // Variabel tempat menyimpan determinan
+        for(int x = 0; x < m.rows; x++) {   // Pengulangan mengali serong matriks ke det
             det *= m.elmt[x][x];
         }
-        return det;
+        return det; // Mengembalikan hasil determinan
     }
 }
