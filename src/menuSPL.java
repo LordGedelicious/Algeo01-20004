@@ -227,20 +227,24 @@ public class menuSPL {
             }
         }
         double new_det = menuDeterminant.determinantKofaktor(isolated);
-        double temp_det;
-        for (int k = 0; k < size; k++) {
-            for (int l = 0; l < size; l++) {
-                isolated.elmt[l][k] = m.elmt[l][size];
+        if (new_det == 0.0) {
+            System.out.println("SPL tidak memiliki satu solusi yang valid");
+        } else {
+            double temp_det;
+            for (int k = 0; k < size; k++) {
+                for (int l = 0; l < size; l++) {
+                    isolated.elmt[l][k] = m.elmt[l][size];
+                }
+                temp_det = menuDeterminant.determinantKofaktor(isolated);
+                answer[k] = temp_det / new_det;
+                for (int i = 0; i < size; i++) {
+                    System.arraycopy(m.elmt[i], 0, isolated.elmt[i], 0, size);
+                }
             }
-            temp_det = menuDeterminant.determinantKofaktor(isolated);
-            answer[k] = temp_det / new_det;
+            System.out.println("Solusi dari SPL di atas adalah :");
             for (int i = 0; i < size; i++) {
-                System.arraycopy(m.elmt[i], 0, isolated.elmt[i], 0, size);
+                System.out.println("X" + (i + 1) + " adalah " + answer[i]);
             }
-        }
-        System.out.println("Solusi dari SPL di atas adalah :");
-        for (int i = 0; i < size; i++) {
-            System.out.println("X" + (i + 1) + " adalah " + answer[i]);
         }
     }
 
