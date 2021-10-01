@@ -218,30 +218,39 @@ public class menuSPL {
     }
 
     public static void SPLCramer(matriks m) {
-        int size = m.rows;
-        double[] answer = new double[size];
-        matriks isolated = new matriks(size, size);
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                isolated.elmt[i][j] = m.elmt[i][j];
-            }
-        }
-        double new_det = menuDeterminant.determinantKofaktor(isolated);
-        double temp_det;
-        for (int k = 0; k < size; k++) {
-            for (int l = 0; l < size; l++) {
-                isolated.elmt[l][k] = m.elmt[l][size];
-            }
-            temp_det = menuDeterminant.determinantKofaktor(isolated);
-            answer[k] = temp_det / new_det;
+        if(m.cols == m.rows + 1){
+            int size = m.rows;
+            double[] answer = new double[size];
+            matriks isolated = new matriks(size, size);
             for (int i = 0; i < size; i++) {
-                System.arraycopy(m.elmt[i], 0, isolated.elmt[i], 0, size);
+                for (int j = 0; j < size; j++) {
+                    isolated.elmt[i][j] = m.elmt[i][j];
+                }
             }
+            double new_det = menuDeterminant.determinantKofaktor(isolated);
+            if (new_det == 0.0) {
+                System.out.println("SPL tidak memiliki satu solusi yang valid");
+            } else {
+                double temp_det;
+                for (int k = 0; k < size; k++) {
+                    for (int l = 0; l < size; l++) {
+                        isolated.elmt[l][k] = m.elmt[l][size];
+                    }
+                    temp_det = menuDeterminant.determinantKofaktor(isolated);
+                    answer[k] = temp_det / new_det;
+                    for (int i = 0; i < size; i++) {
+                        System.arraycopy(m.elmt[i], 0, isolated.elmt[i], 0, size);
+                    }
+                }
+                System.out.println("Solusi dari SPL di atas adalah :");
+                for (int i = 0; i < size; i++) {
+                    System.out.println("X" + (i + 1) + " adalah " + answer[i]);
+                }
+            }
+        }else{
+            System.out.println("Metode SPL dengan matriks Inverse hanya bisa menjalankan SPL dengan ukuran matriks augmented n x (n+1). Silahkan gunakan metode Gauss atau Gauss Jordan untuk menyelesaikan permasalahan anda.");
         }
-        System.out.println("Solusi dari SPL di atas adalah :");
-        for (int i = 0; i < size; i++) {
-            System.out.println("X" + (i + 1) + " adalah " + answer[i]);
-        }
+
     }
 
     public static void SPLInverse(matriks m){
