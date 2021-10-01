@@ -1,15 +1,14 @@
 package src;
 
-import java.io.*;
 import java.util.*;
-
-import jdk.jfr.EventSettings;
 
 public class menuInterpolasi {
     public static void createMatriksInterpolasiKeyboard() {
         try (Scanner points_input = new Scanner(System.in)) {
+            // points_input adalah scanner untuk menerima input jumlah titik-titik yang akan diinterpolasikan
             System.out.println("Masukkan jumlah koordinat yang ingin diinput: ");
             int points = points_input.nextInt();
+            // membuat matriks untuk menyimpan matriks p_n(x) = a_0 + a_1 * (x ^ 1) + ... + a_n * (x ^ n)
             matriks point_array = new matriks(points, points + 1);
             System.out.println("Masukkan koordinat yang ingin dibuat interpolasinya: ");
             try (Scanner x_y_input = new Scanner(System.in)) {
@@ -59,6 +58,7 @@ public class menuInterpolasi {
     }
     public static void finalResults(double[] answer, int size) {
         try (Scanner estimate_input = new Scanner(System.in)) {
+            System.out.println("Masukkan titik yang ingin diestimasi : ");
             double estimate = estimate_input.nextDouble();
             double estimation_count = 0.0;
             String equation = new String();
