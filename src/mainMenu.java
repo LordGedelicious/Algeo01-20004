@@ -14,6 +14,7 @@ public class mainMenu {
             System.out.println("3. Metode Matriks Balikan");
             System.out.println("4. Kaidah Cramer");
             System.out.println("5. Kembali ke Menu Utama");
+            System.out.print("\nMasukan: ");
             int det_int = spl_input.nextInt();
             switch (det_int) {
                 case 1:
@@ -48,6 +49,7 @@ public class mainMenu {
             System.out.println("1. Metode Kofaktor");
             System.out.println("2. Metode Reduksi Baris");
             System.out.println("3. Kembali ke Menu Utama");
+            System.out.print("\nMasukan: ");
             int det_int = det_input.nextInt();
             switch (det_int) {
                 case 1:
@@ -79,6 +81,7 @@ public class mainMenu {
             System.out.println("Pilih cara untuk mengisi matriks untuk diproses");
             System.out.println("1. Input keyboard");
             System.out.println("2. Baca dari file");
+            System.out.print("\nMasukan: ");
             int choice = choice_input.nextInt();
             switch (choice) {
                 case 1:
@@ -86,17 +89,13 @@ public class mainMenu {
                     return input_matriks;
                 case 2:
                     Scanner fileInput = new Scanner(System.in);
+                    System.out.print("Masukkan nama file: ");
                     String fileName = fileInput.next();
                     try {
                         matriks input_matriks_1 = readFileMatriks(fileName);
                         return input_matriks_1;
-                    } catch (FileNotFoundException f){
-                        System.out.println("filenya gaada");
-                    }
-
-                    // ini biar kodenya jalan aja, nanti diganti
+                    } catch (FileNotFoundException f){}
                 default:
-                    // ini kalo selain dari 1 atau 2 inputnya
                     System.out.println("Input tidak dikenali, silahkan coba ulang");
                     return readOrType();
             }
@@ -107,6 +106,7 @@ public class mainMenu {
             System.out.println("Pilih cara untuk mengisi matriks untuk diproses");
             System.out.println("1. Input keyboard");
             System.out.println("2. Baca dari file");
+            System.out.print("\nMasukan: ");
             int choice = choice_input.nextInt();
             switch (choice) {
                 case 1:
@@ -114,6 +114,7 @@ public class mainMenu {
                     return input_matriks;
                 case 2:
                     Scanner fileInput = new Scanner(System.in);
+                    System.out.print("Masukkan nama file: ");
                     String fileName = fileInput.next();
                     try {
                         matriks input_matriks_1 = readFileMatriks(fileName);
@@ -195,7 +196,7 @@ public class mainMenu {
             System.out.println("5. Regresi Linear Berganda");
             System.out.println("6. Keluar");
             System.out.println(" ");
-            System.out.println("Masukan: ");
+            System.out.print("Masukan: ");
             int first_int = first_input.nextInt();
             switch (first_int) {
                 case 1:
