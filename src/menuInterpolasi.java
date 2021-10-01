@@ -11,19 +11,20 @@ public class menuInterpolasi {
             // membuat matriks untuk menyimpan matriks p_n(x) = a_0 + a_1 * (x ^ 1) + ... + a_n * (x ^ n)
             matriks point_array = new matriks(points, points + 1);
             System.out.println("Masukkan koordinat yang ingin dibuat interpolasinya: ");
+            // menerima input koordinat yang ingin diisi ke dalam matriks point_array
             try (Scanner x_y_input = new Scanner(System.in)) {
                 for (int i = 0; i < points; i++) { // i = baris
                     for (int j  = 0; j < points; j++) { // j = kolom
-                        if (j == 0) {
+                        if (j == 0) { // sesuai rumus yang diberikan di spek tugas
                             point_array.elmt[i][j] = 1;
-                        } else if (j == 1) {
+                        } else if (j == 1) { // menjadi base untuk j > 1
                             point_array.elmt[i][j] = x_y_input.nextDouble();
-                        } else {
+                        } else { // mengikuti rumus yang diberikan di spek tugas dengan pangkat sama dengan posisi kolom matriks (j)
                             point_array.elmt[i][j] = Math.pow(point_array.elmt[i][1], (double) j);
                         }
-                    }
+                    } // input dari y
                     point_array.elmt[i][points] = x_y_input.nextDouble();
-                }
+                } // F.S. Matriks telah terbuat, diselesaikan dengan metode matriks
                 solveByCramer(point_array);
             }
         }
