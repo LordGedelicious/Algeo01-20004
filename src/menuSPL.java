@@ -248,7 +248,7 @@ public class menuSPL {
                 }
             }
         }else{
-            System.out.println("Metode SPL dengan matriks Inverse hanya bisa menjalankan SPL dengan ukuran matriks augmented n x (n+1). Silahkan gunakan metode Gauss atau Gauss Jordan untuk menyelesaikan permasalahan anda.");
+            System.out.println("Metode SPL dengan Cramer hanya bisa menjalankan SPL dengan ukuran matriks augmented n x (n+1). Silahkan gunakan metode Gauss atau Gauss Jordan untuk menyelesaikan permasalahan anda.");
         }
 
     }

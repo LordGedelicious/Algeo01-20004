@@ -209,8 +209,44 @@ public class mainMenu {
                     Invers();
                     break;
                 case 4:
+                    try (Scanner choice_input = new Scanner(System.in)) {
+                        System.out.println("Pilih cara untuk mengisi matriks untuk diproses");
+                        System.out.println("1. Input keyboard");
+                        System.out.println("2. Baca dari file");
+                        int choice = choice_input.nextInt();
+                        switch (choice) {
+                            case 1:
+                                menuInterpolasi.createMatriksInterpolasiKeyboard();
+                                break;
+                            case 2:
+                                // untuk isi file
+                                break;
+                            default:
+                                // untuk input di luar 1 atau 2
+                                System.out.println("Input tidak dikenali, silahkan coba ulang");
+                                Menu();
+                        }
+                    }
                     break;
                 case 5:
+                    try (Scanner choice_input = new Scanner(System.in)) {
+                        System.out.println("Pilih cara untuk mengisi matriks untuk diproses");
+                        System.out.println("1. Input keyboard");
+                        System.out.println("2. Baca dari file");
+                        int choice = choice_input.nextInt();
+                        switch (choice) {
+                            case 1:
+                                menuRegresi.createSPLKeyboard();
+                                break;
+                            case 2:
+                                // untuk isi file
+                                break;
+                            default:
+                                // untuk input di luar 1 atau 2
+                                System.out.println("Input tidak dikenali, silahkan coba ulang");
+                                Menu();
+                        }
+                    }
                     break;
                 case 6:
                     System.exit(0);
