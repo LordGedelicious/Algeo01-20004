@@ -1,5 +1,7 @@
 package src;
 
+import java.util.ArrayList;
+
 public class matriks {
     /* --- KONSTRUKTOR --- */
     public int rows;
@@ -11,6 +13,15 @@ public class matriks {
         this.cols = n;
         this.elmt = new double[m][n];
         for(int i = 0; i < this.rows; i++) for(int j = 0; j < this.cols; j++) elmt[i][j] = 0;
+    }
+
+    public matriks(int m, int n, ArrayList<ArrayList<Double>> e){
+        this.rows = m;
+        this.cols = n;
+        this.elmt = new double[m][n];
+        for(int i = 0; i < this.rows; i++) for(int j = 0; j < this.cols; j++) {
+            this.elmt[i][j] = e.get(i).get(j);
+        }
     }
 
     /* --- SELEKTOR --- */

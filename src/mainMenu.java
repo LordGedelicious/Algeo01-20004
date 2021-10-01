@@ -1,5 +1,6 @@
 package src;
 import java.util.*;
+import java.io.*;
 
 public class mainMenu {
     public static void main(String[] args) {
@@ -84,9 +85,16 @@ public class mainMenu {
                     matriks input_matriks = initiateMatriks();
                     return input_matriks;
                 case 2:
-                    // ini kalo read dari file
-                    matriks input_matriks_1 = initiateMatriks();
-                    return input_matriks_1; // ini biar kodenya jalan aja, nanti diganti
+                    Scanner fileInput = new Scanner(System.in);
+                    String fileName = fileInput.next();
+                    try {
+                        matriks input_matriks_1 = readFileMatriks(fileName);
+                        return input_matriks_1;
+                    } catch (FileNotFoundException f){
+                        System.out.println("filenya gaada");
+                    }
+
+                    // ini biar kodenya jalan aja, nanti diganti
                 default:
                     // ini kalo selain dari 1 atau 2 inputnya
                     System.out.println("Input tidak dikenali, silahkan coba ulang");
@@ -105,9 +113,13 @@ public class mainMenu {
                     matriks input_matriks = initiateMatriksDet();
                     return input_matriks;
                 case 2:
-                    // ini kalo read dari file
-                    matriks input_matriks_1 = initiateMatriksDet();
-                    return input_matriks_1; // ini biar kodenya jalan aja, nanti diganti
+                    Scanner fileInput = new Scanner(System.in);
+                    String fileName = fileInput.next();
+                    try {
+                        matriks input_matriks_1 = readFileMatriks(fileName);
+                        return input_matriks_1;
+                    } catch (FileNotFoundException f){}
+                     // ini biar kodenya jalan aja, nanti diganti
                 default:
                     // ini kalo selain dari 1 atau 2 inputnya
                     System.out.println("Input tidak dikenali, silahkan coba ulang");
@@ -147,6 +159,32 @@ public class mainMenu {
             return spl;
         }
     }
+
+    public static matriks readFileMatriks(String fileName) throws FileNotFoundException{
+        File file = new File(fileName);
+        Scanner input = new Scanner(file);
+        int row = -1;
+        ArrayList<ArrayList<Double>> mf = new ArrayList<ArrayList<Double>>();
+        while (input.hasNextLine()){
+            row++;
+            mf.add(new ArrayList<Double>());
+            String currRow = input.nextLine();
+            Scanner scanRow = new Scanner(currRow);
+            while(scanRow.hasNextDouble()){
+                double elmt = scanRow.nextDouble();
+                mf.get(row).add(elmt);
+            }
+        }
+        matriks ans;
+        if (row == 0) {
+            ans = new matriks(1,1);
+        }
+        else {
+            ans = new matriks(mf.size(), mf.get(0).size(), mf);
+        }
+        return ans;
+    }
+
     static void Menu() {
         try (Scanner first_input = new Scanner(System.in)) {
             System.out.println("Menu");
@@ -156,6 +194,8 @@ public class mainMenu {
             System.out.println("4. Interpolasi Polinom");
             System.out.println("5. Regresi Linear Berganda");
             System.out.println("6. Keluar");
+            System.out.println(" ");
+            System.out.println("Masukan: ");
             int first_int = first_input.nextInt();
             switch (first_int) {
                 case 1:

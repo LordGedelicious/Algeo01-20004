@@ -1,6 +1,5 @@
 package src;
 
-import java.lang.invoke.StringConcatException;
 import java.lang.reflect.Array;
 
 import javax.lang.model.element.Element;
@@ -248,8 +247,11 @@ public class menuSPL {
             ans = matriks.multiplyMatriks(lf, ri);
             System.out.println("Solusi dari SPL di atas adalah :");
             for (int i = 0; i < m.rows; i++) {
-                System.out.println("X" + (i + 1) + " adalah " + m.elmt[i][1]);
+                System.out.printf("X%d adalah %.2f\n", i+1, ans.elmt[i][0]);
             }
+        }
+        else{
+            System.out.println("Metode SPL dengan matriks Inverse hanya bisa menjalankan SPL dengan ukuran matriks augmented n x (n+1). Silahkan gunakan metode Gauss atau Gauss Jordan untuk menyelesaikan permasalahan anda.");
         }
     }
 }
